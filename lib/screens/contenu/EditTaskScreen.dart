@@ -8,11 +8,11 @@ class EditTaskScreen extends StatefulWidget {
   final String initialDescription;
 
   const EditTaskScreen({
-    Key? key,
+    super.key,
     required this.taskId,
     required this.initialTitle,
     required this.initialDescription,
-  }) : super(key: key);
+  });
 
   @override
   _EditTaskScreenState createState() => _EditTaskScreenState();
@@ -40,30 +40,40 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Modifier la tâche'),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Iconsax.save_add,
-              color: Colors.black,
-              size: 30,
-            ),
-            onPressed: _saveTask,
-          ),
-        ],
-      ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(30.0),
         child: Column(
           children: [
-            TextField(
-              controller: _titleController,
-              decoration: const InputDecoration(labelText: 'Titre'),
+            Row(
+              children: [
+                Text('Modifier la tâche',
+                    style:
+                        TextStyle(fontSize: 30, fontWeight: FontWeight.w600)),
+                const Spacer(),
+                IconButton(
+                  icon: const Icon(
+                    Iconsax.save_add,
+                    color: Colors.black,
+                    size: 30,
+                  ),
+                  onPressed: _saveTask,
+                ),
+              ],
             ),
-            TextField(
-              controller: _descriptionController,
-              decoration: const InputDecoration(labelText: 'Description'),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  TextField(
+                    controller: _titleController,
+                    decoration: const InputDecoration(labelText: 'Titre'),
+                  ),
+                  TextField(
+                    controller: _descriptionController,
+                    decoration: const InputDecoration(labelText: 'Description'),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
